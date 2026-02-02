@@ -10,10 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import model.programState.ExecutionStack;
+import model.programState.IExecutionStack;
 import model.statement.IStatement;
 import programExamples.a3Examples.ExamplesA3;
 import programExamples.a4Examples.ExamplesA4;
 import programExamples.a5Examples.ExamplesA5;
+import programExamples.conditionalAssignmentExample.ConditionalAssignmentExample;
 
 import java.util.List;
 
@@ -33,9 +36,13 @@ public class ProgramSelectionView {
         IStatement ex6 = examplesA4.getExHeapAlloc();
         IStatement ex7 = examplesA3.getExample1();
         IStatement ex8 = examplesA4.getExWhile();
+
+        ConditionalAssignmentExample conditionalAssignmentStatement = new ConditionalAssignmentExample();
+
+        IStatement conditionalAssignmentStatementExample = conditionalAssignmentStatement.getExample();
         this.programList = List.of(
                 ex1,
-                ex2, ex3, ex4, ex5, ex6, ex7, ex8
+                ex2, ex3, ex4, ex5, ex6, ex7, ex8, conditionalAssignmentStatementExample
         );
     }
 
