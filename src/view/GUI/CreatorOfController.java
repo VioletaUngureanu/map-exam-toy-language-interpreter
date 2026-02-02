@@ -18,7 +18,7 @@ public class CreatorOfController {
         IFileTable fileTable = new MapFileTable();
         IHeap heap = new Heap();
 
-        ProgramState prg = new ProgramState(exeStack, symTable, out, fileTable, heap);
+        ProgramState prg = new ProgramState(exeStack, symTable, out, fileTable, heap, new LatchTable());
 
         IRepository repo = new ListRepository("logGUI.txt");
         repo.addProgram(prg);

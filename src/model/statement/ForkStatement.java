@@ -22,7 +22,8 @@ public class ForkStatement implements  IStatement{
                 state.symbolTable().deepCopy(),
                 state.out(),
                 state.fileTable(),
-                state.heap()
+                state.heap(),
+                state.latchTable()
         );
     }
 

@@ -11,13 +11,15 @@ public class ProgramState {
     private final IHeap heap;
     private static int nextId = 0;
     private final int id;
+    private final ILatchTable latchTable;
 
-    public ProgramState(IExecutionStack executionStack, SymbolTable symbolTable, IOut out, IFileTable fileTable, IHeap heap) {
+    public ProgramState(IExecutionStack executionStack, SymbolTable symbolTable, IOut out, IFileTable fileTable, IHeap heap, ILatchTable latchTable) {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.out = out;
         this.fileTable = fileTable;
         this.heap = heap;
+        this.latchTable = latchTable;
 
         this.id = getNextId();
     }
@@ -43,6 +45,10 @@ public class ProgramState {
 
     public SymbolTable symbolTable() {
         return symbolTable;
+    }
+
+    public ILatchTable latchTable() {
+        return latchTable;
     }
 
     public IExecutionStack executionStack() {
