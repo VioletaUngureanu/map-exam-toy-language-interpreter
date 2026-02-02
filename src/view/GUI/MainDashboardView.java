@@ -17,6 +17,7 @@ public class MainDashboardView {
 
         TableView<HeapRow> heapTable = new TableView<>();
         TableView<SymbolTableRow> symTable = new TableView<>();
+        TableView<LatchTableRow> latchTable = new TableView<>();
 
         ListView<String> outList = new ListView<>();
         ListView<String> fileTableList = new ListView<>();
@@ -27,6 +28,7 @@ public class MainDashboardView {
 
         buildHeapTableColumns(heapTable);
         buildSymTableColumns(symTable);
+        buildLatchTableColumns(latchTable);
 
 
         HBox topBar = new HBox(10,
@@ -40,7 +42,8 @@ public class MainDashboardView {
 
         VBox centerPane = new VBox(8,
                 new Label("Execution Stack (top first)"), exeStackList,
-                new Label("Symbol Table"), symTable
+                new Label("Symbol Table"), symTable,
+                new Label("Latch Table"), latchTable
         );
         centerPane.setPadding(new Insets(10));
         VBox.setVgrow(exeStackList, Priority.ALWAYS);
@@ -55,6 +58,7 @@ public class MainDashboardView {
         VBox.setVgrow(heapTable, Priority.ALWAYS);
         VBox.setVgrow(outList, Priority.ALWAYS);
         VBox.setVgrow(fileTableList, Priority.ALWAYS);
+        VBox.setVgrow(latchTable, Priority.ALWAYS);
 
         SplitPane split = new SplitPane(centerPane, rightPane);
         split.setDividerPositions(0.55);
@@ -65,7 +69,7 @@ public class MainDashboardView {
         root.setCenter(split);
 
         uiCtrl.bindControls( nrProgramStatesField, prgIdList, heapTable, outList,
-                fileTableList, symTable, exeStackList, oneStepButton,backButton
+                fileTableList, symTable, exeStackList, oneStepButton,backButton, latchTable
         );
         return new Scene(root, 1150, 680);
     }
@@ -92,5 +96,17 @@ public class MainDashboardView {
         valCol.setPrefWidth(320);
 
         symTable.getColumns().setAll(nameCol, valCol);
+    }
+
+    private void buildLatchTableColumns(TableView<LatchTableRow> latchTable) {
+        TableColumn<LatchTableRow, Integer> addrCol = new TableColumn<>("Location");
+        addrCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        addrCol.setPrefWidth(120);
+
+        TableColumn<LatchTableRow, String> valCol = new TableColumn<>("Value");
+        valCol.setCellValueFactory(new PropertyValueFactory<>("value"));
+        valCol.setPrefWidth(320);
+
+        latchTable.getColumns().setAll(addrCol, valCol);
     }
 }

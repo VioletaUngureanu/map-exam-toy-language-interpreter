@@ -4,7 +4,6 @@ import controller.Controller;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import model.programState.ProgramState;
 import model.value.IValue;
 
@@ -23,6 +22,7 @@ public class MainDashboardController {
     private ListView<String> exeStackList;
     private Button oneStepButton;
     private Button backButton;
+    private TableView<LatchTableRow> latchTable;
 
     private ProgramState lastDisplayedProgram = null;
 
@@ -123,7 +123,14 @@ public class MainDashboardController {
                 .sorted(Map.Entry.comparingByKey())
                 .map(e -> new HeapRow(e.getKey(), String.valueOf(e.getValue())))
                 .collect(Collectors.toList());
+
         heapTable.getItems().setAll(heapRows);
+        latchTable.getItems().setAll(
+                prg.latchTable().getContent().entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .map(e -> new LatchTableRow(e.getKey(), e.getValue()))
+                        .collect(Collectors.toList())
+        );
 
         outList.getItems().setAll(prg.out().toString());
 
@@ -164,7 +171,7 @@ public class MainDashboardController {
         return splitLines(obj.toString());
     }
 
-    public void bindControls(TextField nrPrgStatesField, ListView<Integer> prgIdList, TableView<HeapRow> heapTable, ListView<String> outList, ListView<String> fileTableList, TableView<SymbolTableRow> symTable, ListView<String> exeStackList, Button oneStepButton, Button backButton) {
+    public void bindControls(TextField nrPrgStatesField, ListView<Integer> prgIdList, TableView<HeapRow> heapTable, ListView<String> outList, ListView<String> fileTableList, TableView<SymbolTableRow> symTable, ListView<String> exeStackList, Button oneStepButton, Button backButton, TableView<LatchTableRow> latchTable) {
         this.nrPrgStatesField = nrPrgStatesField;
         this.prgIdList = prgIdList;
         this.heapTable = heapTable;
@@ -174,12 +181,13 @@ public class MainDashboardController {
         this.exeStackList = exeStackList;
         this.oneStepButton = oneStepButton;
         this.backButton = backButton;
+        this.latchTable = latchTable;
 
         wireEvents();
     }
 
     public void initAfterView() {
-        
+
         refreshAll();
     }
 }

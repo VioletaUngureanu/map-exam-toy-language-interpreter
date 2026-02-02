@@ -62,7 +62,7 @@ public class ProgramState {
                 "SymbolTable:\n" + symbolTable +
                 "Out:\n" + out +
                 "FileTable:\n" + fileTable +
-                "Heap:\n" + heap;
+                "Heap:\n" + heap + "Latch Table:\n" + latchTable;
     }
 
     public boolean isNotCompleted() {

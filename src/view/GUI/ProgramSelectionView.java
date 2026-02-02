@@ -17,6 +17,7 @@ import programExamples.a3Examples.ExamplesA3;
 import programExamples.a4Examples.ExamplesA4;
 import programExamples.a5Examples.ExamplesA5;
 import programExamples.conditionalAssignmentExample.ConditionalAssignmentExample;
+import programExamples.countDownLatchExample.LatchExample;
 
 import java.util.List;
 
@@ -38,11 +39,15 @@ public class ProgramSelectionView {
         IStatement ex8 = examplesA4.getExWhile();
 
         ConditionalAssignmentExample conditionalAssignmentStatement = new ConditionalAssignmentExample();
-
         IStatement conditionalAssignmentStatementExample = conditionalAssignmentStatement.getExample();
+
+        LatchExample latchExample = new LatchExample();
+        IStatement latchStatement = latchExample.getExample();
         this.programList = List.of(
                 ex1,
-                ex2, ex3, ex4, ex5, ex6, ex7, ex8, conditionalAssignmentStatementExample
+                ex2, ex3, ex4, ex5, ex6, ex7, ex8,
+                conditionalAssignmentStatementExample,
+                latchStatement
         );
     }
 

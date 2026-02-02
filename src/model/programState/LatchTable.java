@@ -46,4 +46,15 @@ public class LatchTable implements ILatchTable{
     public synchronized Map<Integer, Integer> getContent() {
         return latchTable;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Integer key : latchTable.keySet()) {
+            sb.append(key.toString()).append("->").append(latchTable.get(key).toString()).append("\n");
+        }
+
+        return sb.toString();
+    }
 }
