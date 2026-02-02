@@ -9,7 +9,6 @@ import model.type.IntType;
 import model.type.ReferenceType;
 import model.value.IntegerValue;
 
-import java.util.concurrent.CountDownLatch;
 
 public class LatchExample {
     private final IStatement example;

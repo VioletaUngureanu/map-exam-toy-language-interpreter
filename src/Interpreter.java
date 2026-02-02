@@ -1,11 +1,9 @@
 import controller.Controller;
 import controller.IController;
-import exceptions.InvalidTypeException;
-import exceptions.VariableNotDefinedException;
+
 import model.programState.*;
 import model.statement.*;
-import programExamples.a5Examples.ExamplesA5;
-import programExamples.a6Examples.ExampleA6;
+
 import programExamples.conditionalAssignmentExample.ConditionalAssignmentExample;
 import programExamples.countDownLatchExample.LatchExample;
 import repository.IRepository;
@@ -14,7 +12,6 @@ import view.TextMenu;
 import view.commands.ExitCommand;
 import view.commands.RunExampleCommand;
 
-import java.util.concurrent.CountDownLatch;
 
 public class Interpreter {
     public static void main(String[] args) {
